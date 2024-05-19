@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: corp-owner-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: corp-owner-api
+  template:
+    metadata:
+      labels:
+        app: corp-owner-api
+    spec:
+      containers:
+        - name: corp-owner-api
+          image:
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: corp-owner-api-service
+spec:
+  selector:
+    app: corp-owner-api
+  ports:
+    - port: 8000
+      targetPort: 8000
+  type: LoadBalancer
