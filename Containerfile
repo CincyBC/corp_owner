@@ -16,4 +16,6 @@ RUN pip install --upgrade pip && pip install --no-cache-dir xgboost==1.7.1 sciki
 
 ENV PYTHONUNBUFFERED=1
 EXPOSE 80
-CMD ["gunicorn", "-w", "3", "-k", "uvicorn.workers.UvicornWorker", "main:app", "--bind", "0.0.0.0:8000"]
+EXPOSE 8080
+EXPOSE 443
+CMD ["gunicorn", "-w", "1", "-k", "uvicorn.workers.UvicornWorker", "main:app", "--bind", "0.0.0.0:8000"]
