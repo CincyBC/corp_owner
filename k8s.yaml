@@ -20,7 +20,7 @@ spec:
               memory: "256Mi"
               cpu: "500m"
           ports:
-            - containerPort: 80
+            - containerPort: 8000
 ---
 apiVersion: v1
 kind: Service
@@ -30,6 +30,6 @@ spec:
   selector:
     app: corp-owner-api
   ports:
-    - port: 80
-      targetPort: 80
+    - port: 8000
+      targetPort: 8000
   type: LoadBalancer

@@ -15,7 +15,6 @@ COPY ./src .
 RUN pip install --upgrade pip && pip install --no-cache-dir xgboost==1.7.1 scikit-learn==1.1.3 fastapi==0.111.0 gunicorn==20.1.0 uvicorn==0.29.0
 
 ENV PYTHONUNBUFFERED=1
-EXPOSE 80
-EXPOSE 8080
+EXPOSE 8000
 EXPOSE 443
-CMD ["gunicorn", "-w", "1", "-k", "uvicorn.workers.UvicornWorker", "main:app", "--bind", "0.0.0.0:8000"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0"]
